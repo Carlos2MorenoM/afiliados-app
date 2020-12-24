@@ -14,15 +14,41 @@ import { CreateCustomerDTO } from './dto/create-customer.dto';
 @Injectable()
 export class CustomerService {
 
-//TODO: constructor
+    constructor(@InjectModel('Customer') private readonly customerModel: Model<Customer>) { }
 
-//TODO: GetAll
+    // Muestra todos los afiliados
+    async getAllCustomer(): Promise<Customer[]> {
+    const customers = await this.customerModel.find().exec();
+    return customers;
+    }
 
-//TODO: GetOne
+    // Muestra un afiliado en particular
+    async GetCustomer(CustomerID): Promise<Customer> {
+    const customer = await this.customerModel.findById(CustomerID).exec();
+    return customer;
+    } 
 
-//TODO: Update
+    //Agrega un afiliado nuevo
+    async addCustomer(createCustomerDTO: CreateCustomerDTO): Promise<Customer> { 
+    const newCustomer = await this.customerModel(createCustomerDTO); 
+    return newCustomer.save(); 
+    } 
 
-//TODO: Delete
+    //Modifica un afiliado
+
+    async updateCustomer(CustomerID, createCustoemrDTO:CreateCustomerDTO): Promise<Customer> {
+    const updatedCustomer = await this.customerModel
+        .findByIdAndUpdate(CustomerID, CreateCustomerDTO, { new: true });
+    return updatedCustomer;
+    }
+
+
+    //Elimina un afiliado
+    async deleteCustomer(CustomerID): Promise<any> {
+    const deletedCustomer = await this.customerModel
+        .findByIdAndRemove(CustomerID);
+    return deletedCustomer
+    }
 
 }
 
