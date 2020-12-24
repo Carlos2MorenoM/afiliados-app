@@ -23,7 +23,7 @@ export class CustomerService {
     }
 
     // Muestra un afiliado en particular
-    async GetCustomer(CustomerID): Promise<Customer> {
+    async getCustomer(CustomerID): Promise<Customer> {
     const customer = await this.customerModel.findById(CustomerID).exec();
     return customer;
     } 
@@ -31,7 +31,7 @@ export class CustomerService {
     //Agrega un afiliado nuevo
     async addCustomer(createCustomerDTO: CreateCustomerDTO): Promise<Customer> { 
     const newCustomer = await this.customerModel(createCustomerDTO); 
-    return newCustomer.save(); 
+    return newCustomer.save(); //NO OLVIDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR
     } 
 
     //Modifica un afiliado

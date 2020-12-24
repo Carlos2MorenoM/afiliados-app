@@ -20,7 +20,6 @@ export class CustomerController {
     }
 
     // Mostrar lista de Afiliados
-
     @Get('Customers')
     async getAllCustomer(@Res() res) {
         const customers = await this.customerService.getAllCustomer();
@@ -31,7 +30,7 @@ export class CustomerController {
     // Mostrar un afiliado en particular utilizando el ID
     @Get('customer/:customerID')
     async getCustomer(@Res() res, @Param('CustomerID') customerID) {
-        const customer = await.this.customerService.getCustomer(customerID);
+        const customer = await this.customerService.getCustomer(customerID);
         if (!customer) throw new NotFoundException('Afiliado no existe!')
         return res.status(HttpStatus.OK).json(customer);
     }
