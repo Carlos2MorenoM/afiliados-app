@@ -8,7 +8,7 @@ export const CustomerSchema = new mongoose.Schema({
     nombre: String,
     apellidos: String,
     mail: String,
-    teléfono: String,
+    telefono: String,
     creado_el: { type: Date, default: Date.now}
 
 })

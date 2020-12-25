@@ -5,6 +5,6 @@ export class CreateCustomerDTO {
     readonly nombre: String;
     readonly apellidos: String;
     readonly mail: String;
-    readonly teléfono: String;
+    readonly telefono: String;
     readonly creado_el: Date;
 }
