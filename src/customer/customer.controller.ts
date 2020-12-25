@@ -35,4 +35,28 @@ export class CustomerController {
         return res.status(HttpStatus.OK).json(customer);
     }
 
+
+    // Modificar los detalles del afiliado
+    @Put('/update')
+    async updateCustomer(@Res() res, @Query('CustomerID') customerID, @Body() createCustomerDTO: CreateCustomerDTO) {
+        const customer = await this.customerService.updateCustomer(customerID, createCustomerDTO);
+        if (!customer) throw new NotFoundException('Afiliado no existe!');
+        return res.status(HttpStatus.OK).json({
+            message: 'Afiliado modificado exitosamente',
+            customer
+        });
+
+    }
+
+    //Eliminar un afiliado
+    @Delete('/delete')
+    async deleteCustomer(@Res() res, @Query('customerID') customerID) {
+        const customer = await this.customerService.deleteCustomer(customerID);
+        if (!customer) throw new NotFoundException('Afiliado no existe!');
+        return res.status(HttpStatus.OK).json({
+            message: 'Afiliado se ha eliminado',
+            customer
+        });
+    }
+
 }
