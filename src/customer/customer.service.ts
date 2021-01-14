@@ -30,13 +30,13 @@ export class CustomerService {
 
     //Agrega un afiliado nuevo
     async addCustomer(createCustomerDTO: CreateCustomerDTO): Promise<Customer> { 
-    const newCustomer = await new this.customerModel(createCustomerDTO); 
+    const newCustomer = new this.customerModel(createCustomerDTO); 
     return newCustomer.save(); //COLOQUÉ NEW PARA QUE DEJARA DE DAR ERROR
     } 
 
     //Modifica un afiliado
 
-    async updateCustomer(CustomerID, createCustoemrDTO:CreateCustomerDTO): Promise<Customer> {
+    async updateCustomer(CustomerID, _createCustomerDTO:CreateCustomerDTO): Promise<Customer> {
     const updatedCustomer = await this.customerModel
         .findByIdAndUpdate(CustomerID, CreateCustomerDTO, { new: true });
     return updatedCustomer;
